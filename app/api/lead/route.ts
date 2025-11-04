@@ -54,10 +54,14 @@ export async function POST(req: Request) {
       supabaseAdmin
         .from(consentTable)
         .insert({ lead_id: data.id, ...consent })
-        .then(({ error }) => {
-          if (error) console.warn('CONSENT_INSERT_WARNING:', error.message);
-        })
-        .catch((e) => console.warn('CONSENT_INSERT_ERROR', e));
+        .then(
+          ({ error }) => {
+            if (error) console.warn('CONSENT_INSERT_WARNING:', error.message);
+          },
+          (e) => {
+            console.warn('CONSENT_INSERT_ERROR', e);
+          }
+        );
     }
 
     // Fire Make webhook (non-blocking)
