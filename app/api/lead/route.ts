@@ -80,7 +80,7 @@ export async function POST(req: Request) {
   }
 }
 
-function parseBool(v: any): boolean {
+function parseBool(v: unknown): boolean {
   if (typeof v === 'boolean') return v;
   const s = String(v || '').toLowerCase();
   return s === 'true' || s === '1' || s === 'on' || s === 'yes';

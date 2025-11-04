@@ -8,7 +8,7 @@ export default function TermsPage() {
       <h1 className="text-2xl font-bold">Terms of Service</h1>
       <p className="text-sm text-gray-700">Last updated: {new Date().toISOString().slice(0,10)}</p>
       <p>
-        These Terms govern your use of the estimate request and scheduling services provided by {BUSINESS_LEGAL_NAME} ("{BUSINESS_NAME}").
+        These Terms govern your use of the estimate request and scheduling services provided by {BUSINESS_LEGAL_NAME} (doing business as {BUSINESS_NAME}).
       </p>
       <p>
         By submitting the form on this site, you agree that the information you provide is accurate and that {BUSINESS_NAME} may contact you regarding your request.
@@ -24,4 +24,3 @@ export default function TermsPage() {
     </main>
   );
 }
-

@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useMemo, useState } from 'react';
+import { useState } from 'react';
 
 const BUSINESS_NAME = process.env.NEXT_PUBLIC_BUSINESS_NAME || 'Home Services';
 const OPT_IN_PURPOSE = process.env.NEXT_PUBLIC_OPT_IN_PURPOSE || 'estimates, scheduling, and service updates';
@@ -19,21 +19,14 @@ const SERVICE_TYPES = [
   'Tree removal & stump grinding',
   'Seasonal health inspection',
 ];
+const CONSENT_TEXT = `By checking this box, I agree to receive SMS from ${BUSINESS_NAME} (${BUSINESS_PHONE_DISPLAY}) at the number provided regarding ${OPT_IN_PURPOSE}. ${SMS_MESSAGE_FREQUENCY}. Msg & data rates may apply. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase. See Terms and Privacy.`;
 
 export default function Home() {
   const [msg, setMsg] = useState<string | null>(null);
 
   const pageUrl = typeof window !== 'undefined' ? window.location.href : '';
 
-  const consentText = useMemo(
-    () =>
-      `By checking this box, I agree to receive SMS from ${BUSINESS_NAME} (${BUSINESS_PHONE_DISPLAY}) at the number provided regarding ${OPT_IN_PURPOSE}. ${SMS_MESSAGE_FREQUENCY}. Msg & data rates may apply. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase. See Terms and Privacy.`,
-    [BUSINESS_NAME, BUSINESS_PHONE_DISPLAY, OPT_IN_PURPOSE, SMS_MESSAGE_FREQUENCY],
-  );
-
-  useEffect(() => {
-    // No-op; kept to ensure re-render uses current envs if hot reloaded
-  }, []);
+  const consentText = CONSENT_TEXT;
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
